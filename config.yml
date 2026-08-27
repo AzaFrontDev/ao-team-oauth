@@ -1,0 +1,105 @@
+backend:
+  name: github
+  repo: edisim/decap-cms-vercel
+  open_authoring: true
+  branch: master
+  base_url: https://decap-cms-now.vercel.app
+  auth_endpoint: api/auth
+
+locale: "de"
+publish_mode: editorial_workflow
+
+media_folder: /img
+public_folder: /img
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - {
+          label: "Publish Date",
+          name: "date",
+          widget: "datetime",
+          format: "DD.MM.YYYY",
+          time_format: false,
+        }
+      - {
+          label: "Autor",
+          name: "author",
+          widget: "relation",
+          collection: "authors",
+          search_fields: ["name"],
+          value_field: "{{slug}}",
+          display_fields: ["name"],
+          required: false,
+        }
+      - { label: "Beschreibung", name: "description", widget: "string" }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
+  - name: "pages"
+    label: "Seiten"
+    folder: "pages"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
+  - name: "settings"
+    label: "Einstellungen"
+    folder: "settings"
+    create: true
+    slug: "settings"
+    editor:
+      preview: false
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - {
+          label: "Beschreibung",
+          name: "description",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Favicon", name: "favicon", widget: "image", required: false }
+      - { label: "Footer", name: "footer", widget: "string", required: false }
+      - {
+          label: "Navigation",
+          name: "navigation",
+          widget: "list",
+          fields:
+            [
+              { label: "Label", name: "label", widget: "string" },
+              { label: "Link", name: "link", widget: "string" },
+            ],
+          required: false,
+        }
+  - name: "authors"
+    label: "Autoren"
+    folder: "authors"
+    create: true
+    slug: "{{name}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "string" }
+      - { label: "Avatar", name: "avatar", widget: "image", required: false }
+      - { label: "Github", name: "github", widget: "string", required: false }
+      - { label: "Twitter", name: "twitter", widget: "string", required: false }
+      - {
+          label: "Linkedin",
+          name: "linkedin",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Website", name: "website", widget: "string", required: false }
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "Ort", name: "location", widget: "string", required: false }
+      - { label: "Role", name: "role", widget: "string", required: false }
