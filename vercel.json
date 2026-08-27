@@ -5,14 +5,14 @@
       "src": "api/**/*.ts",
       "use": "@vercel/node",
       "config": {
-        "nodeVersion": "16.x"
+        "nodeVersion": "20.x"
       }
     },
     {
       "src": "api/_lib/oauth2.ts",
       "use": "@vercel/node",
       "config": {
-        "nodeVersion": "16.x"
+        "nodeVersion": "20.x"
       }
     },
     {
